@@ -26,11 +26,14 @@ if( isset( $data['table'] ) ) {
     $config['file_data'] = $data;
 }
 
-
 //$data_uri = "data:image/png;base64,iVBORw0K...";
 $encoded_image = explode(",", $dataURL)[1];
 $encoded_image = str_replace(' ','+',$encoded_image);
 $decoded_image = base64_decode($encoded_image);
-if( ! defined('ATTACHMENTS_PATH') ){ $filepath = '/home/app/public_html/resources/dropbox-files/BRAIN-APP'.$active_directory."/firma-$type.png"; }
-else { $filepath = ATTACHMENTS_PATH.$active_directory."/firma-$type.png"; }
-var_dump(file_put_contents($filepath, $decoded_image),$filepath);
+
+if( ! defined('ATTACHMENTS_PATH') ){ $filepath = '/home/app/public_html/resources/dropbox-files/BRAIN-APP'.$active_directory; }
+else { $filepath = ATTACHMENTS_PATH.$active_directory; }
+$filename = "/firma-$type.png";
+if( ! is_dir( $filepath ) ) mkdir( $filepath, 0777, true );
+
+var_dump(file_put_contents($filepath.$filename, $decoded_image));
