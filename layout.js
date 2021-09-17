@@ -106,11 +106,13 @@ $(document).on('click','.firma__btn-save',function(){
 	        data: 'DEBUG=0&action=firma/save-file&dataURL='+dataURL+'&d='+d+'&type='+type,
 	        success: function(data){
 	        	$('.component').each(function(i,el){
-	        		if( $(el).attr('data-component-type') === 'files' ){
-	        			reload_component( $(el).attr('data-component') );
-	        		}
+	        			if( $(el).attr('data-component-type') === 'files' ){
+	        					reload_component( $(el).attr('data-component') );
+	        			}
+	        			reload_component( $('[data-target="#'+modal+'"]').closest('.component').attr('data-component') )
 	        	});
-	            $('#'+modal).find('button.close').trigger('click');
+	           
+	          $('#'+modal).find('button.close').trigger('click');
 	        }
 	    });
   	}
