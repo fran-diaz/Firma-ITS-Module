@@ -33,4 +33,4 @@ $encoded_image = str_replace(' ','+',$encoded_image);
 $decoded_image = base64_decode($encoded_image);
 if( ! defined('ATTACHMENTS_PATH') ){ $filepath = '/home/app/public_html/resources/dropbox-files/BRAIN-APP'.$active_directory."/firma-$type.png"; }
 else { $filepath = ATTACHMENTS_PATH.$active_directory."/firma-$type.png"; }
-file_put_contents($filepath, $decoded_image);
+var_dump(file_put_contents($filepath, $decoded_image),$filepath);
